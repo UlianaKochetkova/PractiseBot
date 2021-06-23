@@ -1,6 +1,6 @@
-com/example/FirstBot/Application.java
- com.example.FirstBot.Application
 com/example/FirstBot/MainReceiver.java
  com.example.FirstBot.MainReceiver
+com/example/FirstBot/Application.java
+ com.example.FirstBot.Application
 com/example/FirstBot/Bot.java
  com.example.FirstBot.Bot
