@@ -10,9 +10,6 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.util.*;
 
-/**
- * Allows to register bot in spring context automatically and also use it as standard spring bean.
- */
 
 @SpringBootApplication
 public class Application {
@@ -29,7 +26,7 @@ public class Application {
         inp3=false;
 
         TelegramBotsApi telegram = new TelegramBotsApi(DefaultBotSession.class);
-        Bot bot=new Bot();
+        Bot bot=new Bot("practise_first_bot","1627593419:AAGXzqkwXe0NkgBVE63mbUsOGQJK9YdGufg");
         telegram.registerBot(bot);
         SpringApplication.run(Application.class, args);
     }

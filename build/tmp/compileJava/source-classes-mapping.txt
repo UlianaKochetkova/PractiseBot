@@ -1,3 +1,5 @@
+com/example/FirstBot/User.java
+ com.example.FirstBot.User
 com/example/FirstBot/MainReceiver.java
  com.example.FirstBot.MainReceiver
 com/example/FirstBot/Application.java

@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '2.5.1'
 }
 
+apply plugin: 'idea'
 
 group 'com.example'
 version '1.0-SNAPSHOT'
@@ -12,8 +13,12 @@ repositories {
 }
 
 dependencies {
+    compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
     implementation 'org.telegram:telegrambots:5.2.0'
     implementation 'org.telegram:telegrambots-spring-boot-starter:5.2.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.data:spring-data-mongodb:1.7.2.RELEASE'
 
     implementation 'org.springframework.boot:spring-boot-starter-web:2.2.5.RELEASE'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'

@@ -2,15 +2,17 @@ package com.example.FirstBot;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
+
 
 import static com.example.FirstBot.Application.cur_date;
 import static com.example.FirstBot.Application.hashMap;
@@ -20,6 +22,15 @@ import static com.example.FirstBot.Application.inp3;
 
 @Component
 public class Bot extends TelegramLongPollingBot {
+    private final String BOT_NAME;
+    private final String BOT_TOKEN;
+
+
+    public Bot(String botName, String botToken) {
+        super();
+        this.BOT_NAME = botName;
+        this.BOT_TOKEN = botToken;
+    }
 
     /**
      * Метод для приема сообщений.
@@ -43,7 +54,7 @@ public class Bot extends TelegramLongPollingBot {
      */
     @Override
     public String getBotUsername() {
-        return "practise_first_bot";
+        return BOT_NAME;
     }
 
     /**
@@ -52,9 +63,10 @@ public class Bot extends TelegramLongPollingBot {
      */
     @Override
     public String getBotToken() {
-        return "1627593419:AAGXzqkwXe0NkgBVE63mbUsOGQJK9YdGufg";
+        return BOT_TOKEN;
     }
     //////////////////////////////////////////////////////////////////////
+
 
     /**
      * Метод, обрабатывающий сообщения.
@@ -70,6 +82,11 @@ public class Bot extends TelegramLongPollingBot {
         //Если сообщение от пользователя содержит сообщение и оно содержит обычный текст
 
             if (upd.hasMessage() && upd.getMessage().hasText()){
+                if (upd.getMessage().getFrom()!=null){
+                    System.out.println(""+upd.getMessage().getFrom().getId());
+                }
+                else System.out.println("NULL");
+
                 System.out.println("text: "+upd.getMessage().getText());
                 //Устанавливаем чат, которому отвечаем
                 sm.setChatId(upd.getMessage().getChatId().toString());
@@ -97,6 +114,10 @@ public class Bot extends TelegramLongPollingBot {
 
             }
             else if (upd.hasCallbackQuery()){
+                if (upd.getCallbackQuery().getFrom()!=null){
+                    System.out.println(""+upd.getCallbackQuery().getFrom().getId());
+                }
+                else System.out.println("NULL");
 
                 //Устанавливаем чат, которому отвечаем
                 sm.setChatId(upd.getCallbackQuery().getMessage().getChatId().toString());
